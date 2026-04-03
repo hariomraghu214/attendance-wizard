@@ -3,12 +3,16 @@ import { GradeCalculatorTab } from '@/components/GradeCalculatorTab';
 import { SGPACalculatorTab } from '@/components/SGPACalculatorTab';
 import { ReferenceTab } from '@/components/ReferenceTab';
 import { AttendanceCalculatorTab } from '@/components/AttendanceCalculatorTab';
+import { ShareDialog } from '@/components/ShareDialog';
+import { useInstallPrompt } from '@/hooks/useInstallPrompt';
 
 const tabs = ['Grade Calc', 'SGPA Calc', 'Attendance', 'Reference'];
 
 export default function Index() {
   const [dark, setDark] = useState(true);
   const [tab, setTab] = useState(0);
+  const [shareOpen, setShareOpen] = useState(false);
+  const { canInstall, install } = useInstallPrompt();
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', dark);
@@ -47,24 +51,53 @@ export default function Index() {
             ))}
           </div>
 
-          <button
-            onClick={() => setDark(!dark)}
-            title="Toggle theme"
-            className="bg-transparent border border-border rounded-lg p-[7px] cursor-pointer text-muted-foreground flex items-center justify-center flex-shrink-0"
-          >
-            {dark ? (
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                <circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" />
-                <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
-                <line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" />
-                <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
-              </svg>
-            ) : (
-              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
-              </svg>
+          <div className="flex items-center gap-1.5 flex-shrink-0">
+            {/* Install Button */}
+            {canInstall && (
+              <button
+                onClick={install}
+                title="Install App"
+                className="bg-primary text-primary-foreground border-none rounded-lg px-2.5 py-[7px] cursor-pointer text-xs font-medium flex items-center gap-1.5 flex-shrink-0"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" />
+                </svg>
+                Install
+              </button>
             )}
-          </button>
+
+            {/* Share Button */}
+            <button
+              onClick={() => setShareOpen(true)}
+              title="Share"
+              className="bg-transparent border border-border rounded-lg p-[7px] cursor-pointer text-muted-foreground flex items-center justify-center flex-shrink-0"
+            >
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                <circle cx="18" cy="5" r="3" /><circle cx="6" cy="12" r="3" /><circle cx="18" cy="19" r="3" />
+                <line x1="8.59" y1="13.51" x2="15.42" y2="17.49" /><line x1="15.41" y1="6.51" x2="8.59" y2="10.49" />
+              </svg>
+            </button>
+
+            {/* Theme Toggle */}
+            <button
+              onClick={() => setDark(!dark)}
+              title="Toggle theme"
+              className="bg-transparent border border-border rounded-lg p-[7px] cursor-pointer text-muted-foreground flex items-center justify-center flex-shrink-0"
+            >
+              {dark ? (
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  <circle cx="12" cy="12" r="5" /><line x1="12" y1="1" x2="12" y2="3" /><line x1="12" y1="21" x2="12" y2="23" />
+                  <line x1="4.22" y1="4.22" x2="5.64" y2="5.64" /><line x1="18.36" y1="18.36" x2="19.78" y2="19.78" />
+                  <line x1="1" y1="12" x2="3" y2="12" /><line x1="21" y1="12" x2="23" y2="12" />
+                  <line x1="4.22" y1="19.78" x2="5.64" y2="18.36" /><line x1="18.36" y1="5.64" x2="19.78" y2="4.22" />
+                </svg>
+              ) : (
+                <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+                  <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+                </svg>
+              )}
+            </button>
+          </div>
         </div>
       </div>
 
@@ -75,6 +108,8 @@ export default function Index() {
         {tab === 2 && <AttendanceCalculatorTab />}
         {tab === 3 && <ReferenceTab />}
       </div>
+
+      <ShareDialog open={shareOpen} onClose={() => setShareOpen(false)} />
     </div>
   );
 }
