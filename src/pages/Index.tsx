@@ -5,6 +5,7 @@ import { ReferenceTab } from '@/components/ReferenceTab';
 import { AttendanceCalculatorTab } from '@/components/AttendanceCalculatorTab';
 import { ShareDialog } from '@/components/ShareDialog';
 import { useInstallPrompt } from '@/hooks/useInstallPrompt';
+import logo from '@/assets/logo.png';
 
 const tabs = ['Grade Calc', 'SGPA Calc', 'Attendance', 'Reference'];
 
@@ -24,11 +25,7 @@ export default function Index() {
       <div className="sticky top-0 z-50 bg-card border-b border-border">
         <div className="max-w-[720px] mx-auto px-4 py-3 flex items-center gap-2.5 justify-between">
           <div className="flex items-center gap-2 flex-shrink-0">
-            <div className="w-8 h-8 bg-primary rounded-[9px] flex items-center justify-center flex-shrink-0">
-              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="hsl(var(--primary-foreground))" strokeWidth="2" strokeLinecap="round">
-                <path d="M12 2L2 7l10 5 10-5-10-5z" /><path d="M2 17l10 5 10-5" /><path d="M2 12l10 5 10-5" />
-              </svg>
-            </div>
+            <img src={logo} alt="SVNIT Academic Dashboard" className="w-8 h-8 rounded-[9px] flex-shrink-0" />
             <div className="hidden sm:block">
               <div className="text-[13px] font-bold text-foreground leading-tight">SVNIT</div>
               <div className="text-[10px] text-muted-foreground leading-tight">Academic Dashboard</div>
