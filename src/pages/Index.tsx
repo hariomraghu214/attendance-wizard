@@ -11,6 +11,8 @@ const tabs = ['Grade Calc', 'SGPA Calc', 'Attendance', 'Reference'];
 export default function Index() {
   const [dark, setDark] = useState(true);
   const [tab, setTab] = useState(0);
+  const [shareOpen, setShareOpen] = useState(false);
+  const { canInstall, install } = useInstallPrompt();
 
   useEffect(() => {
     document.documentElement.classList.toggle('dark', dark);
