@@ -49,20 +49,6 @@ export default function Index() {
           </div>
 
           <div className="flex items-center gap-1.5 flex-shrink-0">
-            {/* Install Button */}
-            {canInstall && (
-              <button
-                onClick={install}
-                title="Install App"
-                className="bg-primary text-primary-foreground border-none rounded-lg px-2.5 py-[7px] cursor-pointer text-xs font-medium flex items-center gap-1.5 flex-shrink-0"
-              >
-                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
-                  <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" />
-                </svg>
-                Install
-              </button>
-            )}
-
             {/* Share Button */}
             <button
               onClick={() => setShareOpen(true)}
@@ -97,6 +83,21 @@ export default function Index() {
           </div>
         </div>
       </div>
+
+      {/* Install Banner */}
+      {canInstall && (
+        <div className="max-w-[720px] mx-auto px-4 pt-3">
+          <button
+            onClick={install}
+            className="w-full bg-primary text-primary-foreground border-none rounded-xl px-4 py-2.5 cursor-pointer text-sm font-medium flex items-center justify-center gap-2"
+          >
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" /><polyline points="7 10 12 15 17 10" /><line x1="12" y1="15" x2="12" y2="3" />
+            </svg>
+            Install App
+          </button>
+        </div>
+      )}
 
       {/* Content */}
       <div className="max-w-[720px] mx-auto p-4 pb-20">
