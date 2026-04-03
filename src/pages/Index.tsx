@@ -3,6 +3,8 @@ import { GradeCalculatorTab } from '@/components/GradeCalculatorTab';
 import { SGPACalculatorTab } from '@/components/SGPACalculatorTab';
 import { ReferenceTab } from '@/components/ReferenceTab';
 import { AttendanceCalculatorTab } from '@/components/AttendanceCalculatorTab';
+import { ShareDialog } from '@/components/ShareDialog';
+import { useInstallPrompt } from '@/hooks/useInstallPrompt';
 
 const tabs = ['Grade Calc', 'SGPA Calc', 'Attendance', 'Reference'];
 
