@@ -32,7 +32,7 @@ export default function Index() {
             </div>
           </div>
 
-          <div className="grid grid-cols-4 sm:flex gap-1 bg-background rounded-2xl sm:rounded-3xl p-1 flex-shrink min-w-0">
+          <div className="grid grid-cols-2 sm:flex gap-1 bg-background rounded-2xl sm:rounded-3xl p-1 flex-shrink min-w-0">
             {tabs.map((t, i) => (
               <div
                 key={i}
@@ -41,7 +41,6 @@ export default function Index() {
                 style={{
                   background: tab === i ? 'hsl(var(--primary))' : 'transparent',
                   color: tab === i ? 'hsl(var(--primary-foreground))' : 'hsl(var(--muted-foreground))',
-                  fontSize: '11px',
                 }}
               >
                 {t}
