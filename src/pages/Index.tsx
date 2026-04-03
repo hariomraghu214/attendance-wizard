@@ -5,6 +5,7 @@ import { ReferenceTab } from '@/components/ReferenceTab';
 import { AttendanceCalculatorTab } from '@/components/AttendanceCalculatorTab';
 import { ShareDialog } from '@/components/ShareDialog';
 import { useInstallPrompt } from '@/hooks/useInstallPrompt';
+import logo from '@/assets/logo.png';
 
 const tabs = ['Grade Calc', 'SGPA Calc', 'Attendance', 'Reference'];
 
