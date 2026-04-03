@@ -111,7 +111,5 @@ export default function Index() {
 
       <ShareDialog open={shareOpen} onClose={() => setShareOpen(false)} />
     </div>
-      </div>
-    </div>
   );
 }
