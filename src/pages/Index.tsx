@@ -108,6 +108,10 @@ export default function Index() {
         {tab === 2 && <AttendanceCalculatorTab />}
         {tab === 3 && <ReferenceTab />}
       </div>
+
+      <ShareDialog open={shareOpen} onClose={() => setShareOpen(false)} />
+    </div>
+      </div>
     </div>
   );
 }
